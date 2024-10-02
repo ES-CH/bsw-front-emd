@@ -24,8 +24,10 @@ export default function Home() {
       toast.error(data.error)
     } else {
       const decodedToken = jwtDecode<JwtPayload>(data.access)
+      const lat = decodedToken.center.lat
+      const lng = decodedToken.center.lng
       toast.success('Inicio de sesión exitoso')
-      router.push(`/map?token=${decodedToken}`)
+      router.push(`/map?lat=${lat}&lng=${lng}`)
     }
   }
   return (
